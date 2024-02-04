@@ -13,6 +13,7 @@ export const commentApi = createApi({
   endpoints: (builder) => ({
     getComents: builder.query({
       query: () => API_ENDPOINT,
+      providesTags: ["Comments"],
     }),
     addComment: builder.mutation({
       query: (comment) => ({
@@ -20,6 +21,7 @@ export const commentApi = createApi({
         method: "POST",
         body: comment,
       }),
+      invalidatesTags: ["Comments"],
     }),
     updateCommentCount: builder.mutation({
       query: ({ id, ...body }) => ({
@@ -27,6 +29,7 @@ export const commentApi = createApi({
         method: "PUT",
         body,
       }),
+      invalidatesTags: ["Comments"],
     }),
   }),
 });
